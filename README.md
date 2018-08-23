@@ -1,4 +1,4 @@
-# vue-basic-project
+# yuantinet-admin
 
 > A Vue.js project
 
