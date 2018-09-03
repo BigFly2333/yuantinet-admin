@@ -1,13 +1,24 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <router-link to="/">index</router-link>
+    <router-link to="/login">login</router-link>
+    <router-link to="/questions">questions</router-link>
     <router-view/>
   </div>
 </template>
 
 <script>
+import '@/assets/base.scss'
+
 export default {
-  name: 'App'
+  name: 'App',
+  beforeCreate () {
+    // this.$store.dispatch('Tokencheck').then(() => {
+
+    // }).catch(error => {
+    //   this.$message.error(error)
+    // })
+  }
 }
 </script>
 
@@ -17,7 +28,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  height: 100%;
+  width: 100%
 }
 </style>

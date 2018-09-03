@@ -1,5 +1,7 @@
 <template>
-  <div></div>
+  <div>
+    <h1>hello word!</h1>
+  </div>
 </template>
 
 <style lang="sass" scoped>
@@ -8,6 +10,5 @@
 
 <script>
 export default {
-
 }
 </script>
