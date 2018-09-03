@@ -12,15 +12,23 @@ const user = {
   mutations: {
     SET_TOKEN: (state, token) => {
       state.token = token
+      setToken(data.token, {
+        expires: 7
+      })
     },
-    SET_NAME: (state, username) => {
-      state.name = username
-    },
-    SET_HEAD: (state, head) => {
-      state.head = head
-    },
+    // SET_NAME: (state, username) => {
+    //   state.name = username
+    // },
+    // SET_HEAD: (state, head) => {
+    //   state.head = head
+    // },
     SET_LOGINSTATE: (state, loginState) => {
       state.loginState = loginState
+    },
+    SET_USER_INFO: (state, userInfo) => {
+      state.head = userInfo.head
+      state.name = userInfo.name
+      state.loginState = userInfo.loginState
     }
   },
   actions: {
@@ -32,16 +40,15 @@ const user = {
           password
         }).then(res => {
           const status = res.data.status
-          const data = res.data.data
+          const { token, head, name } = res.data.data
 
           if (status === 200) {
-            setToken(data.token, {
-              expires: 7
+            commit('SET_TOKEN', token)
+            commit('SET_USER_INFO', {
+              head,
+              name,
+              loginState: true
             })
-            commit('SET_NAME', data.user.username)
-            commit('SET_HEAD', data.user.head)
-            commit('SET_TOKEN', data.token)
-            commit('SET_LOGINSTATE', true)
             resolve()
           } else {
             resolve(res.data.msg)
@@ -55,13 +62,15 @@ const user = {
       return new Promise((resolve, reject) => {
         tokencheck().then(res => {
           const status = res.data.status
-          const data = res.data.data
+          const { head, name } = res.data.data
           const msg = res.data.msg
 
           if (status === 200) {
-            commit('SET_NAME', data.name)
-            commit('SET_HEAD', data.head)
-            commit('SET_LOGINSTATE', true)
+            commit('SET_USER_INFO', {
+              head,
+              name,
+              loginState: true
+            })
             resolve()
           }
           resolve(msg)
