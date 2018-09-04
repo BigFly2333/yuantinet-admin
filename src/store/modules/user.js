@@ -12,7 +12,7 @@ const user = {
   mutations: {
     SET_TOKEN: (state, token) => {
       state.token = token
-      setToken(data.token, {
+      setToken(token, {
         expires: 7
       })
     },
